@@ -5,6 +5,7 @@ from typing import Any, Iterable, List, Dict
 from pprint import pprint
 import textwrap
 import random
+import os
 import sys
 
 from command import Command
@@ -139,6 +140,9 @@ class Game:
 
     def writeline(self, text: str = '', end='\n') -> None:
         print(f'\n  {text}', end=end)
+
+    def clearTerminal(self):
+        os.system('printf "\ec\r                        \r"')
 
     def reprItemList(self, i: Iterable[Item], c=False) -> str:
         ret = ''
@@ -955,6 +959,8 @@ class Game:
 
         self.currentRoom = self.rooms['Northeast Coast']
         self.currentRoom.flags.playerHasVisited = True
+
+        self.clearTerminal()
         
         # END OF GAME SETUP
 
